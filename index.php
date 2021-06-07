@@ -145,19 +145,31 @@ include 'config.php';
             $custo_name=$temp['customername'];
             ?>
             
-            <a style="float:right;margin-right:5%;" class="btn btn-info btn-lg" href="index.php">
+            <!-- <a style="float:right;margin-right:5%;" class="btn btn-info btn-lg" href="index.php">
             <span class="glyphicon glyphicon-log-out"></span> Log out
-            </a>
-            <a style="float:right;margin-right:5%;" class="btn btn-info btn-lg" href="CartItems.php?cus_id=<?php echo $_GET['cus_id']?>">
+            </a> -->
+            <a style="float:left;margin-left:5%;" class="btn btn-info btn-lg" href="CartItems.php?cus_id=<?php echo $_GET['cus_id']?>">
                 <span  class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
             </a>
+            <div class="dropdown" style="float:right;margin-right:5%;">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <?php echo($custo_name);?> <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a onMouseOver="this.style.fontWeight='bold'" onMouseOut="this.style.fontWeight='normal'" href="CustomerProfile.php?cus_id=<?php echo $_GET['cus_id']?>">Profile</a></li>
+                    <li><a onMouseOver="this.style.fontWeight='bold'" onMouseOut="this.style.fontWeight='normal'" href="ViewCustomerOrders.php?cus_id=<?php echo $_GET['cus_id']?>">My Orders</a></li>
+                    <hr>
+                    <div class="dropdown-divider"></div>
+                    <li><a onMouseOver="this.style.fontWeight='bold',this.style.color='red'" onMouseOut="this.style.fontWeight='normal',this.style.color='#000000'"  class="dropdown-item" href="index.php">Log Out</a></li>
+                </ul>
+                
+            </div>
             <h1 style="margin-left:5%;">
-            <?php
+            <!-- <?php
             echo("Loged in as ");
-            echo($custo_name);?>
+            echo($custo_name);?> -->
             </h1>
             <?php } ?>
-        
         <br>
         <br>
     </header>
