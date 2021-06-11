@@ -7,10 +7,9 @@ if(isset($_POST['submit']))
 {
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $contactnumber = $_POST['contactnumber'];
     $address = $_POST['address'];
     $category = $_POST['category'];
-    
+    $number=$_GET['number'];
     $sql_u = "SELECT * FROM customer_details WHERE customername='$username'";
   	$res_u = mysqli_query($conn, $sql_u);
     if (mysqli_num_rows($res_u) > 0) {
@@ -18,7 +17,7 @@ if(isset($_POST['submit']))
     }
     else
     {
-        $sql = "INSERT INTO customer_details (customername, customerpassword, customercontactnumber, address, preferance) VALUES ('$username', '$password', '$contactnumber', '$address', '$category')";
+        $sql = "UPDATE customer_details SET customername='$username', customerpassword= '$password',address='$address',preferance='$category' where customercontactnumber=$number ";
         mysqli_query($conn, $sql);
         header ("Location:CustomerLogin.php");
   	}
@@ -195,9 +194,9 @@ if(isset($_POST['submit']))
         <button disabled>Password</button>
         <input type="password" name="password" minlength="4" maxlength="8" placeholder="Password" required/>
         <br>
-        <button disabled>Contact Number</button>
+        <!-- <button disabled>Contact Number</button>
         <input type="number" name="contactnumber" pattern="[1-9]{1}[0-9]{9}" title="Must be of length 10, should not start with 0!" placeholder="Contact Number" required/>
-        <br>
+        <br> -->
         <button disabled>Address</button>
         <input type="text" name="address" placeholder="Address" required/>
         <br>

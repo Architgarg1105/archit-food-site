@@ -1,6 +1,7 @@
 <?php
 include 'config.php';
 $output="Login as Customer!!!";
+$cus=1;
 if(isset($_POST['submit']))
 {
     $username = $_POST['username'];
@@ -162,7 +163,7 @@ if(isset($_POST['submit']))
         <input type="submit" name="submit" value="LOGIN">
         <br>
         <p>Not a Customer?
-        <a class="register" href="CustomerRegister.php">Register</a></p>
+        <a class="register" href="GetMobileNumber.php?type=<?php echo $cus; ?>">Register</a></p>
        
         
         </form>

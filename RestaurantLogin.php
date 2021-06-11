@@ -1,6 +1,7 @@
 <?php
 include 'config.php';
 $output="Login as Restaurant!!!";
+$resta=2;
 if(isset($_POST['submit']))
 {
     $username = $_POST['username'];
@@ -161,7 +162,7 @@ if(isset($_POST['submit']))
         <input type="submit" name="submit" value="LOGIN">
         <br>
         <p>Not Registered?
-        <a class="register" href="RestaurantRegister.php">Register</a></p>
+        <a class="register" href="GetMobileNumber.php?type=<?php echo $resta; ?>">Register</a></p>
         </form>
       </div>
     </center>

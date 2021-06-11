@@ -8,8 +8,8 @@ if(isset($_POST['submit']))
     $username = $_POST['username'];
     $password = $_POST['password'];
     $restaurantname = $_POST['restaurantname'];
-    $contactnumber = $_POST['contactnumber'];
     $address = $_POST['address'];
+    $number=$_GET['number'];
     $sql_u = "SELECT * FROM restaurant_details WHERE username='$username'";
   	$res_u = mysqli_query($conn, $sql_u);
     if (mysqli_num_rows($res_u) > 0) {
@@ -17,7 +17,7 @@ if(isset($_POST['submit']))
     }
     else
     {
-        $sql = "INSERT INTO restaurant_details(username, restaurantpassword, restaurantname, restaurantcontactnumber,address) VALUES ('$username', '$password', '$restaurantname', '$contactnumber', '$address')";
+        $sql = "UPDATE restaurant_details SET username='$username', restaurantpassword='$password', restaurantname='$restaurantname', address='$address' where restaurantcontactnumber=$number ";
         mysqli_query($conn, $sql);
         header ("Location:RestaurantLogin.php");
   	}
@@ -175,9 +175,9 @@ if(isset($_POST['submit']))
         <button disabled>Restaurant Name</button>
         <input type="text" name="restaurantname" placeholder="Restaurant Name" required/>
         <br>
-        <button disabled>Contact Number</button>
+        <!-- <button disabled>Contact Number</button>
         <input type="number" name="contactnumber" pattern="[1-9]{1}[0-9]{9}" title="Must be of length 10, should not start with 0!" placeholder="Contact Number" required/>
-        <br>
+        <br> -->
         <button disabled>Address</button>
         <input type="text" name="address" placeholder="Address" required/>
         <br>
