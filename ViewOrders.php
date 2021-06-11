@@ -76,7 +76,7 @@ include 'config.php';
             <td>Customer Name</td>
             <td>Item Name</td>
             <td>Price</td>
-            <td>Cancel Order</td>
+            <td>Status</td>
         </thead>
         <tbody>
             <?php
