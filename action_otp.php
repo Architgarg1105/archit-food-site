@@ -45,7 +45,9 @@ $mobile= $_POST['phone'];
                     $sql_u = "SELECT * FROM customer_details WHERE customercontactnumber='$mobile'";
                     $res_u = mysqli_query($conn, $sql_u);
                     if (mysqli_num_rows($res_u) > 0) {
-                        echo("Number Already Exists!!!");
+                        echo "<script>alert('Number Already Exists!!!');
+                        window.location.href='./GetMobileNumber.php?type=$type'; 
+                        </script>";
                     }
                     else
                     {
@@ -60,7 +62,11 @@ $mobile= $_POST['phone'];
                     $sql_u = "SELECT * FROM restaurant_details WHERE restaurantcontactnumber='$mobile'";
                     $res_u = mysqli_query($conn, $sql_u);
                     if (mysqli_num_rows($res_u) > 0) {
-                        echo("Number Already Exists!!!");
+                        echo "<script>alert('Number Already Exists!!!');
+                        window.location.href='./GetMobileNumber.php?type=$type'; 
+                        </script>";
+                        // header("Location:./GetMobileNumber.php?type=$type");
+                        
                     }
                     else
                     {

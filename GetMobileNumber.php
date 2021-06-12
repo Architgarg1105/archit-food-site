@@ -1,34 +1,6 @@
 <?php
 include 'config.php';
 $type=$_GET['type'];
-
-if(isset($_POST['submit']))
-{
-   $number=$_POST['phone'];
-   $type=$_GET['type'];
-   if($type==1)
-   {
-      $sql="SELECT * FROM customer_details WHERE customercontactnumber=$number";
-      $res=mysqli_query($conn,$sql);
-      if (mysqli_num_rows($res) > 0) {
-         echo '<script>alert("Number already exist")</script>';
-         header("Location:./GetMobileNumber.php?type=$type");
-     }
-   }
-   else
-   {
-      $sql="SELECT * FROM restaurant_details WHERE restaurantcontactnumber=$number";
-      $res=mysqli_query($conn,$sql);
-      if (mysqli_num_rows($res) > 0) {
-         echo '<script>alert("Number already exist")</script>';
-         header("Location:./GetMobileNumber.php?type=$type");
-     }
-   }
-   header("Location:./action_otp.php?type=$type");
-}
-
-
-
 ?>
 
 <html >
@@ -60,11 +32,11 @@ if(isset($_POST['submit']))
    <div class="form">
       <h2>Provide Phone Number</h2>
      <br>
-      <form method="post">
+      <form method="post" action="action_otp.php?type=<?php echo $type;?>">
          
          <input type="text" name="phone" placeholder="Enter Phone Number" value="" autofocus="on" required>
          <br><br>
-         <input type="submit" value="Send OTP">
+         <input type="submit" name="submit" value="Send OTP">
       </form>
       </div>
    </body>
