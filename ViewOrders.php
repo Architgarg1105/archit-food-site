@@ -10,47 +10,40 @@ include 'config.php';
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Document</title>
     <style>
-        body
-        {
-            background-color: goldenrod;
-        }
-        header
-        {
-            background-color: gainsboro;
-            padding-bottom: 1%;
-        }
-        h1
-        {
+        h1 {
             text-align: center;
+            font-weight: bold;
         }
-        table 
-        {
-            margin-left:auto;
-            margin-right:auto;
-            width:70%;
-            background-color:gainsboro;
-            font-size:30px;
+        table {
+            margin-left: auto;
+            margin-right: auto;
+            width: 70%;
+            background-color: rgb(21, 45, 105, 0.2);
+            font-size: 30px;
         }
-        thead
-        {
-            font-weight:bold;
+        thead {
+            font-weight: bold;
         }
     </style>
 </head>
+
 <body>
-<div class="container-fluid">
-    <header>
-        <h1>FoodShala</h1>
-        <?php 
+    <nav class="navbar" style="padding-bottom:1%;background-color:#43D1AF;">
+        <h1>Orders</h1>
+        <div class="dropdown" style="position:fixed;top:3%;left:85%;">
+            <div class="container-fluid">
+                <?php 
             if (isset($_GET['res_id']))
             { 
                 $restau_id=$_GET['res_id'];
@@ -59,18 +52,24 @@ include 'config.php';
                 $temp = mysqli_fetch_array($res);
                 $restau_name=$temp['restaurantname'];
         ?>
-        <h2 style="margin-left:5%;">
-            <a href="index.php"><p><button style="float:right;margin-right:10%;background-color:blue;color:white;font-weight:bold;">Log Out</button></p></a>
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <?php echo($restau_name);?> <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a onMouseOver="this.style.fontWeight='bold'" onMouseOut="this.style.fontWeight='normal'"
+                            href="AddMenuItem.php?res_id=<?php echo $_GET['res_id']?>">Add Items</a></li>
+                    <hr>
+                    <div class="dropdown-divider"></div>
+                    <li><a onMouseOver="this.style.fontWeight='bold',this.style.color='red'"
+                            onMouseOut="this.style.fontWeight='normal',this.style.color='#000000'" class="dropdown-item"
+                            href="index.php">Log Out</a></li>
+                </ul>
+            </div>
             <?php
-                echo("Loged in as ");
-                echo($restau_name);
-            ?>
-        </h2>
-        <?php
             } 
         ?>
-    </header>
-    <br>
+    </nav>
     <table>
         <thead>
             <td>Customer Name</td>
@@ -95,7 +94,10 @@ include 'config.php';
                 <td><?php echo $temp1['customername']?></td>
                 <td><?php echo $temp2['itemname']?></td>
                 <td><?php echo $temp2['price']?></td>
-                <td><a  href="CancelOrder.php?cus_id=<?php echo $customerid?>&item_id=<?php echo $itemid ?>&res_id=<?php echo $_GET['res_id'] ?>"><p ><button type="button" class="btn btn-primary btn-lg">Done</button></p></a></td>
+                <td><a
+                        href="CancelOrder.php?cus_id=<?php echo $customerid?>&item_id=<?php echo $itemid ?>&res_id=<?php echo $_GET['res_id'] ?>">
+                        <p><button type="button" class="btn btn-primary btn-lg">Done</button></p>
+                    </a></td>
             </tr>
             <?php } ?>
         </tbody>

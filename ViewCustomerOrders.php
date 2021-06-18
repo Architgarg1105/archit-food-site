@@ -19,21 +19,6 @@ include 'config.php';
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Document</title>
     <style>
-        body
-        {
-            background-color: goldenrod;
-        }
-        .home 
-        {
-            float:left;
-            padding-left:50px;
-        }
-        header
-        {
-            padding-bottom: 1%;
-            height:100px;
-            background: linear-gradient(#eacda3 , #d6ae7b);
-        }
         h1
         {
             text-align: center;
@@ -44,19 +29,22 @@ include 'config.php';
             margin-left:auto;
             margin-right:auto;
             width:70%;
-            background-color:gainsboro;
+            background-color:rgb(21, 45, 105,0.2);
             font-size:30px;
         }
         thead
         {
             font-weight:bold;
         }
+        
     </style>
 </head>
 <body>
 <!-- <div class="container-fluid"> -->
-    <header>
-        <h1>FoodShala</h1>
+<nav class="navbar" style="padding-bottom:1%;background-color:#43D1AF;">
+<h1>Your Orders</h1>
+<div class="dropdown" style="position:fixed;top:3%;left:85%;">
+        
         <?php 
             $custo_id=$_GET['cus_id'];
             $sql = "SELECT customername FROM customer_details where customerid='$custo_id'";
@@ -64,27 +52,23 @@ include 'config.php';
             $temp = mysqli_fetch_array($res);
             $custo_name=$temp['customername'];
             ?>
-            
-            <div class="dropdown" style="float:right;margin-right:5%;">
                 <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <?php echo($custo_name);?> <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
+                    <li><a onMouseOver="this.style.fontWeight='bold'" onMouseOut="this.style.fontWeight='normal'" href="index.php?cus_id=<?php echo $_GET['cus_id']?>">Home</a></li>
                     <li><a onMouseOver="this.style.fontWeight='bold'" onMouseOut="this.style.fontWeight='normal'" href="CustomerProfile.php?cus_id=<?php echo $_GET['cus_id']?>">Profile</a></li>
                     <li><a onMouseOver="this.style.fontWeight='bold'" onMouseOut="this.style.fontWeight='normal'" href="ViewCustomerOrders.php?cus_id=<?php echo $_GET['cus_id']?>">My Orders</a></li>
                     <hr>
                     <div class="dropdown-divider"></div>
                     <li><a onMouseOver="this.style.fontWeight='bold',this.style.color='red'" onMouseOut="this.style.fontWeight='normal',this.style.color='#000000'"  class="dropdown-item" href="index.php">Log Out</a></li>
                 </ul>
-            </div>
-           
-                <a class="home" href="index.php?cus_id=<?php echo $_GET['cus_id']?>"><p ><button type="button" class="btn btn-primary btn-lg">Home</button></p></a>
-           
-    </header>
+            </div>      
+                </nav> 
     <br>
     <table>
         <thead>
-            <td>Restaurant Name</td>
+            <td style="padding-left:40px;">Restaurant Name</td>
             <td>Item Name</td>
             <td>Price</td>
             <td>Cancel Order</td>
@@ -103,7 +87,7 @@ include 'config.php';
                         $temp2 = mysqli_fetch_array($res2);
             ?>
             <tr>
-                <td><?php echo $temp1['restaurantname']?></td>
+                <td style="padding-left:40px;"><?php echo $temp1['restaurantname']?></td>
                 <td><?php echo $temp2['itemname']?></td>
                 <td><?php echo $temp2['price']?></td>
                 <td><a  href="CancelOrder.php?cus_id=<?php echo $_GET['cus_id']?>&item_id=<?php echo $itemid ?>"><p ><button type="button" class="btn btn-primary btn-lg">Cancel</button></p></a></td>
