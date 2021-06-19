@@ -4,7 +4,7 @@
     $restaurantid=$_GET['res_id'];
     $itemid=$_GET['item_id'];
     $sql = "INSERT INTO ordered_items (customerid, restaurantid,itemid) VALUES ('$customerid', '$restaurantid','$itemid')";
-    $order = mysqli_query($conn, $sql);
+    $result = mysqli_query($conn, $sql);
     header("Location:./index.php?cus_id=$customerid");
 exit;
 ?>

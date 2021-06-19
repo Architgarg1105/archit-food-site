@@ -6,9 +6,8 @@ include 'config.php';
     {
         include 'config.php';
         $ret = array();
-        $sql = "SELECT * FROM add_item";
+        $sql = "SELECT * FROM add_item ";
         $res = mysqli_query($conn, $sql);
-
         while($ar = mysqli_fetch_assoc($res))
         {
             $ret[] = $ar;
@@ -151,10 +150,14 @@ include 'config.php';
             <a style="float:left;margin-left:5%;" class="btn btn-info btn-lg" href="CartItems.php?cus_id=<?php echo $_GET['cus_id']?>">
                 <span  class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
             </a>
+            <a style="float:left;margin-left:5%;" class="btn btn-info btn-lg" href="user_recommendation.php?cus_id=<?php echo $_GET['cus_id']?>">
+                <span  class="glyphicon glyphicon-shopping-cart"></span> Recommend Food
+            </a>
             <div class="dropdown" style="float:right;margin-right:5%;">
                 <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <?php echo($custo_name);?> <span class="caret"></span>
                 </button>
+                
                 <ul class="dropdown-menu">
                     <li><a onMouseOver="this.style.fontWeight='bold'" onMouseOut="this.style.fontWeight='normal'" href="CustomerProfile.php?cus_id=<?php echo $_GET['cus_id']?>">Profile</a></li>
                     <li><a onMouseOver="this.style.fontWeight='bold'" onMouseOut="this.style.fontWeight='normal'" href="ViewCustomerOrders.php?cus_id=<?php echo $_GET['cus_id']?>">My Orders</a></li>
@@ -193,7 +196,7 @@ include 'config.php';
                 <h1 style="text-align:center;"><?php echo $itemname; ?></h1>
                 <p style="font-weight:bold;" class="price">Rs <?php echo $price; ?></p>
                 <p class="restauname"><?php echo $restaurantname['restaurantname']; ?></p>
-                <a <?php if (isset($_GET['cus_id'])) { ?> onclick="alert('Food Ordered');" href="FoodOrdered.php?cus_id=<?php echo $_GET['cus_id']?>&res_id=<?php echo $restaurantid?>&item_id=<?php echo $itemid?>" <?php } ?>href="CustomerLogin.php">
+                <a <?php if (isset($_GET['cus_id'])) { ?> onclick="alert('Food Ordered');" href="Ratings.php?cus_id=<?php echo $_GET['cus_id']?>&res_id=<?php echo $restaurantid?>&item_id=<?php echo $itemid?>" <?php } ?>href="CustomerLogin.php">
                 <p ><button class="orderbutton">Order Now</button></p></a>
                 <a <?php if (isset($_GET['cus_id'])) { ?> href="AddIntoCart.php?cus_id=<?php echo $_GET['cus_id']?>&item_id=<?php echo $itemid?>" <?php } ?>href="CustomerLogin.php">
                 <p ><button class="orderbutton">Add To Cart</button></p></a>
