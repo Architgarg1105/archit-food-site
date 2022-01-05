@@ -28,4 +28,3 @@ ordered from different restaurants along with the cancel order option.
 
 ->There is a OTP functionality also only verified numbers can register.
 
-=>URL for Website: http://archit-food-site.lovestoblog.com/
